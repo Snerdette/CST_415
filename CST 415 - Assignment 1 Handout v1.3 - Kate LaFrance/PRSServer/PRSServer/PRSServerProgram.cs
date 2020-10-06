@@ -54,14 +54,15 @@ namespace PRSServer
 
                 public void KeepAlive()
                 {
-                    // TODO: PortReservation.KeepAlive()
                     // save current time in lastAlive
+                    lastAlive = DateTime.Now;
                 }
 
                 public void Close()
                 {
-                    // TODO: PortReservation.Close()
-                    // make this reservation available
+                    // make this reservation available again
+                    available = true;
+                    serviceName = null;
                 }
             }
 
@@ -147,24 +148,50 @@ namespace PRSServer
                     case PRSMessage.MESSAGE_TYPE.REQUEST_PORT:
                         {
                             // check for expired ports and send requested report
+                            response = RequestPort(msg.ServiceName);
                         }
                         break;
 
                     case PRSMessage.MESSAGE_TYPE.KEEP_ALIVE:
                         {
                             // client has requested that we keep their port alive
-                            // find the port
+                            // find the reserved port by port # and service name
+                            PortReservation reservation = ports.FirstOrDefault(p => !p.Available && p.ServiceName == msg.ServiceName && p.Port == msg.Port);
+
                             // if found, keep it alive and send SUCCESS
-                            // else, SERVICE_NOT_FOUND
+                            if (reservation != null)
+                            {
+                                reservation.KeepAlive();
+                                response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SUCCESS);
+
+                            }
+                            else
+                            {
+                                // else, SERVICE_NOT_FOUND
+                                response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SERVICE_NOT_FOUND);
+                            }
+                            
                         }
                         break;
 
                     case PRSMessage.MESSAGE_TYPE.CLOSE_PORT:
                         {
                             // client has requested that we close their port, and make it available for others!
-                            // find the port
-                            // if found, close it and send SUCCESS
-                            // else, SERVICE_NOT_FOUND
+                            // Find the reserved port by port # and service name
+                            PortReservation reservation = ports.FirstOrDefault(p => !p.Available && p.ServiceName == msg.ServiceName && p.Port == msg.Port);
+
+                            // if found, close and send SUCCESS
+                            if (reservation != null)
+                            {
+                                reservation.Close();
+                                response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SUCCESS);
+
+                            }
+                            else
+                            {
+                                // else, SERVICE_NOT_FOUND
+                                response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SERVICE_NOT_FOUND);
+                            }
                         }
                         break;
 
