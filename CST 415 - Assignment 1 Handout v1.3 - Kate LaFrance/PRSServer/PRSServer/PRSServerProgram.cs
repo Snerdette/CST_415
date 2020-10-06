@@ -46,8 +46,10 @@ namespace PRSServer
 
                 public void Reserve(string serviceName)
                 {
-                    // TODO: PortReservation.Reserve()
                     // reserve this port for serviceName
+                    available = false;
+                    this.serviceName = serviceName;
+                    lastAlive = DateTime.Now;
                 }
 
                 public void KeepAlive()
@@ -73,13 +75,24 @@ namespace PRSServer
 
             public PRS(ushort startingClientPort, ushort endingClientPort, int keepAliveTimeout)
             {
-                // TODO: PRS.PRS()
-                
                 // save parameters
-                
+                this.startingClientPort = startingClientPort;
+                this.endingClientPort = endingClientPort;
+                this.keepAliveTimeout = keepAliveTimeout;
+
                 // initialize to not stopped
-                
+                stopped = false;
+
                 // initialize port reservations
+                numPorts = endingClientPort - startingClientPort + 1;   // Inclusive
+                ports = new PortReservation[numPorts];
+
+                // Loop through the port reservation array, filling in the port #'s
+                for (ushort port = startingClientPort; port <= endingClientPort; port++)
+                {
+                    // The array is zero-based index, port #'s start at startingClientPort
+                    ports[port - startingClientPort] = new PortReservation(port);
+                }
                 
             }
 
@@ -94,15 +107,30 @@ namespace PRSServer
 
             private PRSMessage RequestPort(string serviceName)
             {
-                // TODO: PRS.RequestPort()
-
                 PRSMessage response = null;
 
-                // client has requested the lowest available port, so find it!
-                
-                // if found an avialable port, reserve it and send SUCCESS
-                // else, none available, send ALL_PORTS_BUSY
-                
+                // Validate that serviceName is not already reserved, if it is, send SERVICE_IN_USE
+                if (ports.SingleOrDefault(p => p.ServiceName == serviceName && !p.Available) == null) 
+                { 
+                    // client has requested the lowest available port, so find it!
+                    PortReservation reservation = ports.FirstOrDefault(p => p.Available);
+             
+                    // if found an avialable port, reserve it and send SUCCESS
+                    if(reservation != null)
+                    {
+                        reservation.Reserve(serviceName);
+                        response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, serviceName, response.Port, PRSMessage.STATUS.SUCCESS);
+                    }
+                    else
+                    {
+                        // else, none available, send ALL_PORTS_BUSY
+                        response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, serviceName, 0, PRSMessage.STATUS.ALL_PORTS_BUSY);
+                    }
+                }
+                else
+                {
+                    response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, serviceName, 0, PRSMessage.STATUS.SERVICE_IN_USE);
+                }
                 return response;
             }
 
@@ -188,32 +216,42 @@ namespace PRSServer
             // -t < keep alive time in seconds >
 
             // check for valid STARTING_CLIENT_PORT and ENDING_CLIENT_PORT
-            
+
             // initialize the PRS server
-            
+            PRS prs = new PRS(STARTING_CLIENT_PORT, ENDING_CLIENT_PORT, KEEP_ALIVE_TIMEOUT);
+
             // create the socket for receiving messages at the server
-            
+            Socket listningSocket = new Socket(SocketType.Dgram, ProtocolType.Udp);
+
             // bind the listening socket to the PRS server port
+            listningSocket.Bind(new IPEndPoint(IPAddress.Any, SERVER_PORT));
             
             //
             // Process client messages
             //
 
-            // while (!prs.Stopped)
+             while (!prs.Stopped)
             {
+                EndPoint clientEndPoint = null;
+
                 try
                 {
                     // receive a message from a client
-                    
+                    clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                    PRSMessage msg = PRSMessage.ReceiveMessage(listningSocket, ref clientEndPoint);
+
                     // let the PRS handle the message
-                    
+                    PRSMessage response = prs.HandleMessage(msg);
+
                     // send response message back to client
+                    response.SendMessage(listningSocket, clientEndPoint);
                     
                 }
                 catch (Exception ex)
                 {
                     // attempt to send a UNDEFINED_ERROR response to the client, if we know who that was
-
+                    PRSMessage errorMsg = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, "", 0, PRSMessage.STATUS.UNDEFINED_ERROR);
+                    errorMsg.SendMessage(listningSocket, clientEndPoint);
                 }
             }
 

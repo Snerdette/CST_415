@@ -48,9 +48,11 @@ namespace PRSTestClient
             Console.WriteLine();
 
             // create the socket for sending messages to the server
-            
+            Socket clientSocket = new Socket(SocketType.Dgram, ProtocolType.Udp);
+
             // construct the server's address and port
-            
+            IPEndPoint serverSP = new IPEndPoint(IPAddress.Parse(SERVER_IP), SERVER_PORT);
+
             //
             // Implement test cases
             //
@@ -58,6 +60,7 @@ namespace PRSTestClient
             try
             {
                 // call each test case method
+                TestCase1(clientSocket, serverSP);
             }
             catch (Exception ex)
             {
@@ -66,6 +69,7 @@ namespace PRSTestClient
             }
 
             // close the client socket and quit
+            clientSocket.Close();
             
             // wait for a keypress from the user before closing the console window
             Console.WriteLine("Press Enter to exit");
@@ -90,14 +94,28 @@ namespace PRSTestClient
 
         private static void TestCase1(Socket clientSocket, IPEndPoint endPt)
         {
-            // TODO: PRSTestClientProgram.TestCase1()
-
             // Simulates a PRS client, SVC1, that requests a port, keeps it alive and then closes it.
 
             Console.WriteLine("TestCase 1 Started...");
 
-            // See test cases doc
-            
+            // send {REQUEST_PORT, "SVC1", 0, 0}
+            SendMessage(clientSocket, endPt, new PRSMessage(PRSMessage.MESSAGE_TYPE.REQUEST_PORT, "SVC1", 0, 0));
+
+            // expect {RESPONSE, "SVC1", 40000, SUCCESS}
+            ExpectMessage(clientSocket, "{RESPONSE, SVC1, 40000, SUCCESS}");
+
+            // send {KEEP_ALIVE, "SVC1", 40000, 0}
+            SendMessage(clientSocket, endPt, new PRSMessage(PRSMessage.MESSAGE_TYPE.KEEP_ALIVE, "SVC1", 40000, 0));
+
+            // expect {RESPONSE, "SVC1", 40000, SUCCESS}
+            ExpectMessage(clientSocket, "{RESPONSE, SVC1, 40000, SUCCESS}");
+
+            // send {CLOSE_PORT, "SVC1", 40000, 0}
+            SendMessage(clientSocket, endPt, new PRSMessage(PRSMessage.MESSAGE_TYPE.CLOSE_PORT, "SVC1", 40000, 0));
+
+            // expect {RESPONSE, "SVC1", 40000, SUCCESS}
+            ExpectMessage(clientSocket, "{RESPONSE, SVC1, 40000, SUCCESS}");
+
             Console.WriteLine("TestCase 1 Passed!");
             Console.WriteLine();
         }
