@@ -198,9 +198,20 @@ namespace PRSServer
                     case PRSMessage.MESSAGE_TYPE.LOOKUP_PORT:
                         {
                             // client wants to know the reserved port number for a named service
-                            // find the port
+                            // find the reserved port by service name
+                            PortReservation reservation = ports.FirstOrDefault(p => !p.Available && p.ServiceName == msg.ServiceName);
+
                             // if found, send port number back
-                            // else, SERVICE_NOT_FOUND
+                            if (reservation != null)
+                            {
+                                response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SUCCESS);
+
+                            }
+                            else
+                            {
+                                // else, SERVICE_NOT_FOUND
+                                response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SERVICE_NOT_FOUND);
+                            }
                         }
                         break;
 
