@@ -17,65 +17,82 @@ namespace FTClient
     {
         private string ftServerAddress;
         private ushort ftServerPort;
-        bool connected;
-        Socket clientSocket;
-        NetworkStream stream;
-        StreamReader reader;
-        StreamWriter writer;
+        private bool connected;
+        private Socket clientSocket;
+        private NetworkStream stream;
+        private StreamReader reader;
+        private StreamWriter writer;
 
         public FTClient(string ftServerAddress, ushort ftServerPort)
         {
-            // TODO: FTClient.FTClient()
-
             // save server address/port
-
+            this.ftServerAddress = ftServerAddress;
+            this.ftServerPort = ftServerPort;
 
             // initialize to not connected to server
-
+            connected = false;
+            clientSocket = null;
+            stream = null;
+            reader = null;
+            writer = null;
         }
 
         public void Connect()
         {
-            // TODO: FTClient.Connect()
-
             if (!connected)
             {
                 // create a client socket and connect to the FT Server's IP address and port
-                
+                clientSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
+                clientSocket.Connect(new IPEndPoint(IPAddress.Parse(ftServerAddress), ftServerPort));
+
                 // establish the network stream, reader and writer
-                
+                stream = new NetworkStream(clientSocket);
+                reader = new StreamReader(stream);
+                writer = new StreamWriter(stream);
+
                 // now connected
+                connected = true;
+
+                Console.WriteLine("FTClient.Connect() - Client is connected!");
                 
             }
         }
 
         public void Disconnect()
         {
-            // TODO: FTClient.Disconnect()
-
             if (connected)
             {
                 // send exit to FT server
-                
+                SendExit();
+
                 // close writer, reader and stream
-                
+                writer.Close();
+                reader.Close();
+                stream.Close();
+
                 // disconnect and close socket
-                
+                clientSocket.Disconnect(false);
+                clientSocket.Close();
+
                 // now disconnected
-                
+                connected = false;
+
             }
         }
 
         public void GetDirectory(string directoryName)
         {
-            // TODO: FTClient.GetDirectory()
-
             // send get to the server for the specified directory and receive files
             if (connected)
             {
                 // send get command for the directory
-                
+                SendGet(directoryName);
+
                 // receive and process files
+                while (ReceiveFile(directoryName))
+                {
+                    Console.WriteLine("FTClient.GetDirectory() - Received a file!");
+                }
                 
             }
         }
@@ -84,15 +101,21 @@ namespace FTClient
 
         private void SendGet(string directoryName)
         {
-            // TODO: FTClient.SendGet()
             // send get message for the directory
+            string get = "get\n" + directoryName + "\n";
+            writer.Write(get);
+            writer.Flush();
+            Console.WriteLine("FTClient.SendGet() - Sent!");
 
         }
 
         private void SendExit()
         {
-            // TODO: FTClient.SendExit()
             // send exit message
+            string exit = "exit\n";
+            writer.Write(exit);
+            writer.Flush();
+            Console.WriteLine("FTClient.SendExit() - Sent!");
 
         }
 
@@ -105,14 +128,26 @@ namespace FTClient
 
         private bool ReceiveFile(string directoryName)
         {
-            // TODO: FTClient.ReceiveFile()
             // receive a single file from the server and save it locally in the specified directory
 
             // expect file name from server
+            string fileName = reader.ReadLine();
 
             // when the server sends "done", then there are no more files!
+            if(fileName == "done")
+            {
+                Console.WriteLine("FTClient.ReceivedFile() - received done!");
+                return false;
+            }
 
             // handle error messages from the server
+            if (fileName == "error")
+            {
+                Console.WriteLine("FTClient.ReceivedFile() - received error!");
+                string errorMsg = reader.ReadLine();
+                Console.WriteLine("Error!  " + errorMsg);
+                return false;
+            }
 
             // received a file name
 

@@ -35,13 +35,30 @@ namespace FTClient
             string DIRECTORY_NAME = null;
 
             // process the command line arguments
+            
+
+            try
+            {
+                for (int i = 0; i < args.Length; i++)
+                {
+                    if(args[i] == "-d")
+                    {
+                        DIRECTORY_NAME = args[++i];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("FTClientProgram.Main() - Error: " + ex.Message);
+                Usage();
+                return;
+            }
+
+
             Console.WriteLine("PRS Address: " + PRSSERVER_IPADDRESS);
             Console.WriteLine("PRS Port: " + PSRSERVER_PORT);
             Console.WriteLine("FT Server Address: " + FTSERVER_IPADDRESS);
             Console.WriteLine("Directory: " + DIRECTORY_NAME);
-
-            // Temporary hard code
-            DIRECTORY_NAME = "foo";
 
             try
             {
