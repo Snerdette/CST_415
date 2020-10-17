@@ -143,8 +143,6 @@ namespace PRSServer
 
             public PRSMessage HandleMessage(PRSMessage msg)
             {
-                // TODO: PRS.HandleMessage()
-
                 // handle one message and return a response
 
                 PRSMessage response = null;
@@ -172,7 +170,6 @@ namespace PRSServer
                             {
                                 reservation.KeepAlive();
                                 response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SUCCESS);
-
                             }
                             else
                             {
@@ -300,6 +297,7 @@ namespace PRSServer
                     // attempt to send a UNDEFINED_ERROR response to the client, if we know who that was
                     PRSMessage errorMsg = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, "", 0, PRSMessage.STATUS.UNDEFINED_ERROR);
                     errorMsg.SendMessage(listningSocket, clientEndPoint);
+                    Console.WriteLine("PRSS:Main() Error: " + ex);
                 }
             }
 

@@ -8,6 +8,9 @@
 // Assumes the PRSServer is run with the following command line arguments:
 //     PRSServer.exe -p 30000 -s 40000 -e 40100 -t 10
 //
+// Altered By:  Kate LaFrance 
+//         On:           10/16/2020
+//
 
 using System;
 using System.Threading;
@@ -62,6 +65,8 @@ namespace PRSTestClient
                 TestCase2(clientSocket, serverSP);
                 TestCase3(clientSocket, serverSP);
                 TestCase4(clientSocket, serverSP);
+                TestCase5(clientSocket, serverSP);
+                TestCase6(clientSocket, serverSP);
             }
             catch (Exception ex)
             {
