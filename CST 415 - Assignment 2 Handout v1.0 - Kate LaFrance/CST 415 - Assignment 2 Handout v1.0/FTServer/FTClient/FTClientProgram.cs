@@ -24,8 +24,6 @@ namespace FTClient
 
         static void Main(string[] args)
         {
-            // TODO: FTClientProgram.Main()
-
             // defaults
             string PRSSERVER_IPADDRESS = "127.0.0.1";
             ushort PSRSERVER_PORT = 30000;
@@ -45,6 +43,11 @@ namespace FTClient
                     {
                         DIRECTORY_NAME = args[++i];
                     }
+                }
+
+                if (DIRECTORY_NAME == null)
+                {
+                    throw new Exception("FTClientProgram: Directory name is null");
                 }
             }
             catch (Exception ex)

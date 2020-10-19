@@ -92,7 +92,7 @@ namespace PRSLib
         public static PRSMessage ReceiveMessage(Socket sock, ref EndPoint fromEP)
         {
             byte[] buffer = new byte[MSG_SIZE];
-            int result = sock.ReceiveFrom(buffer, ref fromEP);
+            int result = sock.ReceiveFrom(buffer, ref fromEP); // HERE
             PRSMessage msg = new PRSMessage(buffer);
             Console.WriteLine("Received " + result.ToString() + " bytes: " + msg.ToString());
 

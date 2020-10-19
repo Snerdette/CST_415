@@ -1,0 +1,10 @@
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\bin\Debug\PRSServer.exe.config
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\bin\Debug\PRSServer.exe
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\bin\Debug\PRSServer.pdb
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\bin\Debug\PRSLib.dll
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\bin\Debug\PRSLib.pdb
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\obj\Debug\PRSServer.csprojAssemblyReference.cache
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\obj\Debug\PRSServer.csproj.CoreCompileInputs.cache
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\obj\Debug\PRSServer.csproj.CopyComplete
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\obj\Debug\PRSServer.exe
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\PRSServer\PRSServer\obj\Debug\PRSServer.pdb

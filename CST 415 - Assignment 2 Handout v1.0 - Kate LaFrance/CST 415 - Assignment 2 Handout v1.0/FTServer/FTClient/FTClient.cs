@@ -76,7 +76,12 @@ namespace FTClient
 
                 // now disconnected
                 connected = false;
+                clientSocket = null;
+                stream = null;
+                reader = null;
+                writer = null;
 
+                Console.WriteLine("FTClient.Disconnect() - Disconnected!");
             }
         }
 
@@ -121,8 +126,9 @@ namespace FTClient
 
         private void SendInvalidMessage()
         {
-            // TODO: FTClient.SendInvalidMessage()
             // allows for testing of server's error handling code
+            writer.WriteLine("Invalid");
+            writer.Flush();
 
         }
 
@@ -150,24 +156,38 @@ namespace FTClient
             }
 
             // received a file name
+            Console.WriteLine("FTClient.ReceivedFile() - received filename: " + fileName);
 
             // receive file length from server
+            int fileLength = int.Parse(reader.ReadLine());
 
             // receive file contents
+            int charsToRead = fileLength;
+            StringBuilder fileContents = new StringBuilder();
 
             // loop until all of the file contenst are received
-            //while (charsToRead > 0)
+            while (charsToRead > 0)
             {
                 // receive as many characters from the server as available
+                char[] buffer = new char[charsToRead];
+                int charsActuallyRead = reader.Read(buffer, 0, charsToRead);
+                Console.WriteLine("FTClient.ReceivedFile() - received file contents: length = " + charsActuallyRead + ", Contents = " + new string(buffer));
+
 
                 // accumulate bytes read into the contents
+                charsToRead -= charsActuallyRead;
+                fileContents.Append(buffer);
 
             }
+            Console.WriteLine("FTClient.ReceivedFile() - received file Contents: All contents = " + fileContents.ToString());
 
             // create the local directory if needed
-            
+            Directory.CreateDirectory(directoryName);
+
             // save the file locally on the disk
-            
+            File.WriteAllText(Path.Combine(directoryName, fileName), fileContents.ToString());
+            Console.WriteLine("FTClient.ReceivedFile() - Wrote file contents!");
+
             return true;
         }
 

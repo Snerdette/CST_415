@@ -1,0 +1,10 @@
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\bin\Debug\FTClient.exe.config
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\bin\Debug\FTClient.exe
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\bin\Debug\FTClient.pdb
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\bin\Debug\PRSLib.dll
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\bin\Debug\PRSLib.pdb
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\obj\Debug\FTClient.csprojAssemblyReference.cache
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\obj\Debug\FTClient.csproj.CoreCompileInputs.cache
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\obj\Debug\FTClient.csproj.CopyComplete
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\obj\Debug\FTClient.exe
+D:\Workspace\CST_415\CST 415 - Assignment 2 Handout v1.0 - Kate LaFrance\CST 415 - Assignment 2 Handout v1.0\FTServer\FTClient\obj\Debug\FTClient.pdb
