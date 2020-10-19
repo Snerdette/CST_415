@@ -39,7 +39,8 @@ namespace PRSServer
                 public bool Expired(int timeout)
                 {
                     // return true if timeout secons have elapsed since lastAlive
-                    return (DateTime.Now - lastAlive).Seconds > timeout;
+                    return DateTime.Now > lastAlive.AddSeconds(timeout);
+                    //return (DateTime.Now - lastAlive).Seconds > timeout;
                 }
 
                 public void Reserve(string serviceName)
@@ -93,7 +94,7 @@ namespace PRSServer
                     ports[port - startingClientPort] = new PortReservation(port);
                 }
                 
-            }
+            } 
 
             public bool Stopped { get { return stopped; } }
 
@@ -125,8 +126,8 @@ namespace PRSServer
                     // if found an avialable port, reserve it and send SUCCESS
                     if(reservation != null)
                     {
-                        reservation.Reserve(serviceName);
-                        response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, serviceName, response.Port, PRSMessage.STATUS.SUCCESS);
+                        reservation.Reserve(serviceName);                                       // HERE: was "response.Port
+                        response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, serviceName, reservation.Port, PRSMessage.STATUS.SUCCESS);
                     }
                     else
                     {
@@ -211,7 +212,6 @@ namespace PRSServer
                             if (reservation != null)
                             {
                                 response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SUCCESS);
-
                             }
                             else
                             {
@@ -224,8 +224,8 @@ namespace PRSServer
                     case PRSMessage.MESSAGE_TYPE.STOP:
                         {
                             // client is telling us to close the appliation down
-                            stopped = true;
-                            response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, "", 0, PRSMessage.STATUS.SUCCESS);
+                            stopped = true;                                           // HERE: was "", 0 now ServiceName and Port
+                            response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SUCCESS);
                         }
                         break;
                 }
@@ -246,8 +246,6 @@ namespace PRSServer
 
         static void Main(string[] args)
         {
-            // TODO: PRSServerProgram.Main()
-
             // defaults
             ushort SERVER_PORT = 30000;
             ushort STARTING_CLIENT_PORT = 40000;
@@ -294,14 +292,16 @@ namespace PRSServer
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("PRSS:Main() Error: " + ex);
                     // attempt to send a UNDEFINED_ERROR response to the client, if we know who that was
                     PRSMessage errorMsg = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, "", 0, PRSMessage.STATUS.UNDEFINED_ERROR);
                     errorMsg.SendMessage(listningSocket, clientEndPoint);
-                    Console.WriteLine("PRSS:Main() Error: " + ex);
+                    
                 }
             }
 
             // close the listening socket
+            listningSocket.Close();
             
             // wait for a keypress from the user before closing the console window
             Console.WriteLine("Press Enter to exit");
