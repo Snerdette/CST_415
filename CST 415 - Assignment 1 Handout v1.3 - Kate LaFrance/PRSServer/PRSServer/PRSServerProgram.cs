@@ -206,12 +206,12 @@ namespace PRSServer
                         {
                             // client wants to know the reserved port number for a named service
                             // find the reserved port by service name
-                            PortReservation reservation = ports.FirstOrDefault(p => !p.Available && p.ServiceName == msg.ServiceName);
+                            PortReservation reservation = ports.FirstOrDefault(p => p.ServiceName == msg.ServiceName);
 
                             // if found, send port number back
                             if (reservation != null)
                             {
-                                response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, msg.Port, PRSMessage.STATUS.SUCCESS);
+                                response = new PRSMessage(PRSMessage.MESSAGE_TYPE.RESPONSE, msg.ServiceName, reservation.Port, PRSMessage.STATUS.SUCCESS);
                             }
                             else
                             {
