@@ -64,7 +64,6 @@ namespace FTServer
         private void Run()
         {
             // this method is executed on the clientThread
-
             try
             {
                 // create network stream, reader and writer over the socket
@@ -117,11 +116,10 @@ namespace FTServer
 
                                     // Send a file's contents to the client
                                     SendFileContents(contents);
-                                }
-
-                                // send done after last file
-                                SendDone();
+                                }                                
                             }
+                            // send done after last file
+                            SendDone();
                         }       
                     }
 

@@ -30,11 +30,10 @@ namespace FTClient
             string FTSERVICE_NAME = "FT Server";
             string FTSERVER_IPADDRESS = "127.0.0.1";
             ushort FTSERVER_PORT = 40000;
-            string DIRECTORY_NAME = null;
+            string DIRECTORY_NAME = "foo";
 
             // process the command line arguments
-            
-
+           
             try
             {
                 for (int i = 0; i < args.Length; i++)

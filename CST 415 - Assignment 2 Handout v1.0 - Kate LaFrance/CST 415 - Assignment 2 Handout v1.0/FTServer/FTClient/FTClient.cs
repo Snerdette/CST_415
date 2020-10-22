@@ -97,8 +97,7 @@ namespace FTClient
                 while (ReceiveFile(directoryName))
                 {
                     Console.WriteLine("FTClient.GetDirectory() - Received a file!");
-                }
-                
+                }             
             }
         }
 
@@ -135,7 +134,6 @@ namespace FTClient
         private bool ReceiveFile(string directoryName)
         {
             // receive a single file from the server and save it locally in the specified directory
-
             // expect file name from server
             string fileName = reader.ReadLine();
 
@@ -173,12 +171,11 @@ namespace FTClient
                 int charsActuallyRead = reader.Read(buffer, 0, charsToRead);
                 Console.WriteLine("FTClient.ReceivedFile() - received file contents: length = " + charsActuallyRead + ", Contents = " + new string(buffer));
 
-
                 // accumulate bytes read into the contents
                 charsToRead -= charsActuallyRead;
                 fileContents.Append(buffer);
-
             }
+
             Console.WriteLine("FTClient.ReceivedFile() - received file Contents: All contents = " + fileContents.ToString());
 
             // create the local directory if needed
