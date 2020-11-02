@@ -33,11 +33,14 @@ namespace SDServer
 
         public void Start()
         {
-            // TODO: SDServer.Start()
-
             // create a listening socket for clients to connect
+            Socket listeningSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
+
             // bind to the SD Server port
+            listeningSocket.Bind(new IPEndPoint(IPAddress.Any, listeningPort));
+
             // set the socket to listen
+            listeningSocket.Listen(clientBacklog);
             
             bool done = false;
             while (!done)
@@ -45,9 +48,11 @@ namespace SDServer
                 try
                 {
                     // accept a client connection
-                    
+                    Socket clientSocket = listeningSocket.Accept();
+
                     // instantiate connected client to process messages
-                    
+                    SDConnectedClient client = new SDConnectedClient(clientSocket, sessionTable);
+                    client.Start();
                 }
                 catch (Exception ex)
                 {
@@ -58,7 +63,7 @@ namespace SDServer
             }
 
             // close socket and quit
-            
+            listeningSocket.Close();
         }
     }
 }

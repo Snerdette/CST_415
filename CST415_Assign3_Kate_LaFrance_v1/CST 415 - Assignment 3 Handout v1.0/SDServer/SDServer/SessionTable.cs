@@ -64,32 +64,51 @@ namespace SDServer
 
         public ulong OpenSession()
         {
-            // TODO: SessionTable.OpenSession()
-
             // allocate and return a new session to the caller
             // find a free sessionId
-            // allocate a new session instance
-            // save the session for later
-            
+            ulong sessionId = NextSessionId();
 
-            return 0;
+            // allocate a new session instance
+            Session session = new Session(sessionId);
+
+            // save the session for later
+            mutex.WaitOne();
+            sessions.Add(sessionId, session);
+            mutex.ReleaseMutex();
+
+            return sessionId;
         }
 
         public bool ResumeSession(ulong sessionID)
         {
-            // TODO: SessionTable.ResumeSession()
-
             // returns true only if sessionID is a valid and open sesssion, false otherwise
-            return false;
+            bool result = false;
+
+            mutex.WaitOne();
+            if (sessions.ContainsKey(sessionID))
+            {
+                result = true;
+            }
+            mutex.ReleaseMutex();
+
+            return result;
         }
 
         public void CloseSession(ulong sessionID)
         {
-            // TODO: SessionTable.CloseSession()
-
             // closes the session, will no longer be open and cannot be reused
-            // throws a session exception if the session is not open
+            mutex.WaitOne();
 
+            // throws a session exception if the session is not open
+            if (!sessions.ContainsKey(sessionID))
+            {
+                mutex.ReleaseMutex();
+                throw new SessionException("Cannot close session that doesn't exist!");
+            }
+
+            // Remove the session from the tab;e
+            sessions.Remove(sessionID);
+            mutex.ReleaseMutex();
         }
 
         public string GetSessionValue(ulong sessionID, string key)
@@ -103,11 +122,20 @@ namespace SDServer
 
         public void PutSessionValue(ulong sessionID, string key, string value)
         {
-            // TODO: SessionTable.PutSessionValue()
-
             // stores a session value by session ID and key, replaces value if it already exists
+            mutex.WaitOne();
+
             // throws a session exception if the session is not open
-            
+            if (!sessions.ContainsKey(sessionID))
+            {
+                mutex.ReleaseMutex();
+                throw new SessionException("ST.PutSessionValue() - Cannot put value for the session that doesn't exist!");
+            }
+
+            // Store the value in the session
+            sessions[sessionID].values[key] = value;
+
+            mutex.ReleaseMutex();
         }
     }
 }

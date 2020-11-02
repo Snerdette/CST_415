@@ -19,8 +19,6 @@ namespace SDServer
 
         static void Main(string[] args)
         {
-            // TODO: SDServerProgram.Main()
-
             // defaults
             ushort SDSERVER_PORT = 40000;
             int CLIENT_BACKLOG = 5;
@@ -36,12 +34,17 @@ namespace SDServer
 
             try
             {
-                // contact the PRS, request a port for "FT Server" and start keeping it alive
-                
+                // contact the PRS, request a port for "SD Server" and start keeping it alive
+                PRSClient prs = new PRSClient(PRS_ADDRESS, PRS_PORT, SERVICE_NAME);
+                SDSERVER_PORT = prs.RequestPort();
+                prs.KeepPortAlive();
+
                 // instantiate SD server and start it running
-                
+                SDServer sd = new SDServer(SDSERVER_PORT, CLIENT_BACKLOG);
+                sd.Start();
+
                 // tell the PRS that it can have it's port back, we don't need it anymore
-                
+                prs.ClosePort();
             }
             catch (Exception ex)
             {
