@@ -128,14 +128,13 @@ namespace SDClient
 
         public string GetDocument(string documentName)
         {
-            // TODO: SDClient.GetDocument()
-
             ValidateConnected();
 
             // send get to the server
-            
+            SendGet(documentName);
+
             // get the server's response
-            return "TODO";
+            return ReceiveGetResponse();
         }
 
         public void PostDocument(string documentName, string documentContents)
@@ -235,10 +234,10 @@ namespace SDClient
 
         private void SendGet(string documentName)
         {
-            // TODO: SDClient.SendGet()
-
             // send get message to SD server
-
+            writer.Write("get\n" + documentName + "\n");
+            writer.Flush();
+            Console.WriteLine("Sent get to server for document: " + documentName);
         }
 
         private void ReceivePostResponse()
@@ -264,23 +263,25 @@ namespace SDClient
 
         private string ReceiveGetResponse()
         {
-            // TODO: SDClient.ReceiveGetResponse()
-
             // get server's response to our last get request and return the content received
             string line = reader.ReadLine();
             if (line == "success")
             {
                 // yay, server accepted our request!
-                
+
                 // read the document name, content length and content
-                
+                string documentName = reader.ReadLine();  // Note: we ignore the document name
+                int contentLength = int.Parse(reader.ReadLine());
+                Console.WriteLine("Received get response for " + documentName);
+
                 // return the content
-                return "TODO";
+                return ReceiveDocumentContent(contentLength);
             }
             else if (line == "error")
             {
                 // boo, server sent us an error!
-                throw new Exception("TODO");
+                string msg = reader.ReadLine();
+                throw new Exception(msg);
             }
             else
             {
@@ -290,12 +291,21 @@ namespace SDClient
 
         private string ReceiveDocumentContent(int length)
         {
-            // TODO: SDClient.ReceiveDocumentContent()
-
             // read from the reader until we've received the expected number of characters
             // accumulate the characters into a string and return those when we received enough
 
-            return "TODO";
+            StringBuilder builder = new StringBuilder();
+            int charactersToRead = length;
+            while (charactersToRead > 0)
+            {
+                char[] buffer = new char[charactersToRead];
+                int charactersRead = reader.Read(buffer, 0, charactersToRead);
+                charactersToRead -= charactersRead;
+                builder.Append(buffer, 0, charactersRead);
+            }
+            Console.WriteLine("SDC.ReceiveDocumentContent() - received " + length.ToString() + " characters from server");
+
+            return builder.ToString();
         }
     }
 }

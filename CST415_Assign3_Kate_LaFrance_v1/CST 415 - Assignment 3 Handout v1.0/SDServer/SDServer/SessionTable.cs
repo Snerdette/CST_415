@@ -113,11 +113,28 @@ namespace SDServer
 
         public string GetSessionValue(ulong sessionID, string key)
         {
-            // TODO: SessionTable.GetSessionValue()
-
             // retrieves a session value, given session ID and key
+            mutex.WaitOne();
+
             // throws a session exception if the session is not open or if the value does not exist by that key
-            return "TODO";
+            if (!sessions.ContainsKey(sessionID))
+            {
+                mutex.ReleaseMutex();
+                throw new SessionException("ST.GetSessionValue() - Cannot get value for the session that doesn't exist!");
+            }
+
+            // Throws a session exception if the value does not exsist by that key
+            if (!sessions[sessionID].values.ContainsKey(key)) 
+            {
+                mutex.ReleaseMutex();
+                throw new SessionException("Session key not found!");
+            }
+
+            string value = sessions[sessionID].values[key];
+
+            mutex.ReleaseMutex();
+
+            return value;
         }
 
         public void PutSessionValue(ulong sessionID, string key, string value)
