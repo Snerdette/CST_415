@@ -1,0 +1,10 @@
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\bin\Debug\SDServer.exe.config
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\bin\Debug\SDServer.exe
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\bin\Debug\SDServer.pdb
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\bin\Debug\PRSLib.dll
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\bin\Debug\PRSLib.pdb
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\obj\Debug\SDServer.csprojAssemblyReference.cache
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\obj\Debug\SDServer.csproj.CoreCompileInputs.cache
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\obj\Debug\SDServer.csproj.CopyComplete
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\obj\Debug\SDServer.exe
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDServer\obj\Debug\SDServer.pdb

@@ -1,0 +1,13 @@
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\bin\Debug\SDBrowser.exe.config
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\bin\Debug\SDBrowser.exe
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\bin\Debug\SDBrowser.pdb
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\bin\Debug\PRSLib.dll
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\bin\Debug\PRSLib.pdb
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\obj\Debug\SDBrowser.csprojAssemblyReference.cache
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\obj\Debug\SDBrowser.MainForm.resources
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\obj\Debug\SDBrowser.Properties.Resources.resources
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\obj\Debug\SDBrowser.csproj.GenerateResource.cache
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\obj\Debug\SDBrowser.csproj.CoreCompileInputs.cache
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\obj\Debug\SDBrowser.csproj.CopyComplete
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\obj\Debug\SDBrowser.exe
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDBrowser\obj\Debug\SDBrowser.pdb
