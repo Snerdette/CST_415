@@ -28,7 +28,7 @@ namespace SDBrowser
 
             // instantiate the fetcher and add the support SD and FT protocols
             fetcher = new ContentFetcher();
-            // TODO: add ft protocols to the fetcher
+            fetcher.AddProtocol("FT", new SDProtocolClient(prsIP, prsPort));
             fetcher.AddProtocol("SD", new SDProtocolClient(prsIP, prsPort));
 
             InitializeComponent();
@@ -60,13 +60,11 @@ namespace SDBrowser
             try
             {
                 fetcher.Close();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

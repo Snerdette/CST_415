@@ -7,3 +7,4 @@ D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Hand
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSTestClient\obj\Debug\PRSTestClient.csproj.CopyComplete
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSTestClient\obj\Debug\PRSTestClient.exe
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSTestClient\obj\Debug\PRSTestClient.pdb
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSTestClient\obj\Debug\PRSTestClient.csprojAssemblyReference.cache

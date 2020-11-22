@@ -11,6 +11,7 @@ using PRSLib;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using FTClientLib;
 
 namespace SDBrowser
 {
@@ -26,101 +27,58 @@ namespace SDBrowser
 
         public FTProtocolClient(string prsIP, ushort prsPort)
         {
-            // TODO: FTProtocolClient.FTProtocolClient()
             // save the PRS server's IP address and port
             // will be used later to lookup the port for the FT Server when needed
+            this.prsIP = prsIP;
+            this.prsPort = prsPort;
             
         }
 
         public string GetDocument(string serverIP, string documentName)
         {
-            // TODO: FTProtocolClient.GetDocument()
             // make sure we have valid parameters
             // serverIP is the FT Server's IP address
             // documentName is the name of a directory on the FT Server
             // both should not be empty
-            
+            if (String.IsNullOrWhiteSpace(serverIP) || String.IsNullOrWhiteSpace(documentName))
+            {
+                throw new Exception("Empty server IP or document name!");
+            }
 
             // contact the PRS and lookup port for "FT Server"
-            
+            PRSClient prs = new PRSClient(prsIP, prsPort, "FT Server");
+            ushort ftPort = prs.LookupPort();
 
             // connect to FT server by ipAddr and port
-            
+            FTClient ft = new FTClient(serverIP, ftPort);
+            ft.Connect();
 
-            // create network stream, reader and writer
-            
+            // get the files from requested directory
+            FTClient.FileContent[] files = ft.GetDirectory(documentName);
 
-            // send get message to server for requested directory
-            
 
-            // receive files from server, and accumulate in result string
-            
-            
-            // send exit
-            
+            // Accumulate file contents in a result string
+            StringBuilder builder = new StringBuilder();
+            foreach (FTClient.FileContent file in files)
+            {
+                builder.AppendLine(file.Name);
+                builder.AppendLine(file.Content);
+                builder.AppendLine();
+            }
 
-            // close writer, reader and network stream
-            
-
-            // disconnect from server and close the socket
-            
+            // disconnect from server
+            ft.Disconnect();
 
             // return the content
-            return "TODO";
+            return builder.ToString();
         }
 
         public void Close()
         {
-            // TODO: FTProtocolClient.Close()
             // nothing to do here!
             // the FT Protocol does not expect a client to close a session
             // everything is handled in the GetDocument() method
         }
 
-        private static void SendGet(StreamWriter writer, string directoryName)
-        {
-            // TODO: FTProtocolClient.SendGet()
-            // send the get message to the FT server
-            
-        }
-
-        private static bool ReceiveFile(StreamReader clientReader, string directoryName, StringBuilder result)
-        {
-            // TODO: FTProtocolClient.ReceiveFile()
-            // retrieve a single file from the FT Server
-            // for reach file received...
-            //  result += document name + \n
-            //  result += document content
-
-            // expect file name
-
-
-            // when the server sends "done", then there are no more files!
-
-
-            // handle error messages from the server
-
-
-            // received a file name and add it to the result
-
-
-            // retrieve file length
-
-
-            // retrieve file contents
-
-
-            // add the contents to the result string
-
-
-            return true;
-        }
-
-        private static void SendExit(StreamWriter writer)
-        {
-            // TODO: FTProtocolClient.SendExit()
-            // send exit message to FT server
-
-        }
     }
 }
