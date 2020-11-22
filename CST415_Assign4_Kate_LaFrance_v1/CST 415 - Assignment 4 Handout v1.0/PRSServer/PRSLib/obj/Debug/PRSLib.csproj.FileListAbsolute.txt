@@ -1,6 +1,5 @@
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSLib\bin\Debug\PRSLib.dll
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSLib\bin\Debug\PRSLib.pdb
-D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSLib\obj\Debug\PRSLib.csprojAssemblyReference.cache
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSLib\obj\Debug\PRSLib.csproj.CoreCompileInputs.cache
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSLib\obj\Debug\PRSLib.dll
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\PRSServer\PRSLib\obj\Debug\PRSLib.pdb

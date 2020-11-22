@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SDClient.cs" />
     <Compile Include="SDClientProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,6 +53,10 @@
     <ProjectReference Include="..\..\PRSServer\PRSLib\PRSLib.csproj">
       <Project>{7df7f66b-d68d-4ddd-9326-988b6e6b2abc}</Project>
       <Name>PRSLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SDClientLib\SDClientLib.csproj">
+      <Project>{753ecbd6-1ab5-419e-b767-075088716b25}</Project>
+      <Name>SDClientLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

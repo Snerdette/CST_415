@@ -89,6 +89,10 @@
       <Project>{7df7f66b-d68d-4ddd-9326-988b6e6b2abc}</Project>
       <Name>PRSLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SDClientLib\SDClientLib.csproj">
+      <Project>{753ecbd6-1ab5-419e-b767-075088716b25}</Project>
+      <Name>SDClientLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

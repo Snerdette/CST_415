@@ -1,0 +1,6 @@
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClientLib\bin\Debug\SDClientLib.dll
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClientLib\bin\Debug\SDClientLib.pdb
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClientLib\obj\Debug\SDClientLib.csproj.CoreCompileInputs.cache
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClientLib\obj\Debug\SDClientLib.dll
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClientLib\obj\Debug\SDClientLib.pdb
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClientLib\obj\Debug\SDClientLib.csprojAssemblyReference.cache

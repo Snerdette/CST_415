@@ -11,9 +11,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 
-namespace SDClient
+namespace SDClientLib
 {
-    class SDClient
+    public class SDClient
     {
         private string sdServerAddress;
         private ushort sdServerPort;

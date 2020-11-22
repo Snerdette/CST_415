@@ -8,3 +8,5 @@ D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Hand
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClient\obj\Debug\SDClient.csproj.CopyComplete
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClient\obj\Debug\SDClient.exe
 D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClient\obj\Debug\SDClient.pdb
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClient\bin\Debug\SDClientLib.dll
+D:\Workspace\CST_415\CST415_Assign4_Kate_LaFrance_v1\CST 415 - Assignment 4 Handout v1.0\SDServer\SDClient\bin\Debug\SDClientLib.pdb

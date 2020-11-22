@@ -37,17 +37,19 @@
             // 
             this.textboxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textboxAddress.Location = new System.Drawing.Point(12, 12);
+            this.textboxAddress.Location = new System.Drawing.Point(16, 15);
+            this.textboxAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textboxAddress.Name = "textboxAddress";
-            this.textboxAddress.Size = new System.Drawing.Size(220, 20);
+            this.textboxAddress.Size = new System.Drawing.Size(292, 22);
             this.textboxAddress.TabIndex = 0;
             // 
             // buttonGo
             // 
             this.buttonGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonGo.Location = new System.Drawing.Point(238, 10);
+            this.buttonGo.Location = new System.Drawing.Point(317, 12);
+            this.buttonGo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonGo.Name = "buttonGo";
-            this.buttonGo.Size = new System.Drawing.Size(34, 23);
+            this.buttonGo.Size = new System.Drawing.Size(45, 28);
             this.buttonGo.TabIndex = 1;
             this.buttonGo.Text = "Go!";
             this.buttonGo.UseVisualStyleBackColor = true;
@@ -58,21 +60,23 @@
             this.textboxContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textboxContent.Location = new System.Drawing.Point(12, 38);
+            this.textboxContent.Location = new System.Drawing.Point(16, 47);
+            this.textboxContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textboxContent.Multiline = true;
             this.textboxContent.Name = "textboxContent";
-            this.textboxContent.Size = new System.Drawing.Size(260, 211);
+            this.textboxContent.Size = new System.Drawing.Size(345, 259);
             this.textboxContent.TabIndex = 2;
             // 
-            // Form1
+            // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(379, 321);
             this.Controls.Add(this.textboxContent);
             this.Controls.Add(this.buttonGo);
             this.Controls.Add(this.textboxAddress);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "MainForm";
             this.Text = "SD Browser";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.ResumeLayout(false);
